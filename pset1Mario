@@ -1,0 +1,37 @@
+// downloading functions
+#include <stdio.h>
+#include <cs50.h>
+
+int get_mario_integer(void);
+
+int main(void)
+{
+    int i = get_mario_integer();
+
+    for (int x = 0; x < i; x++)
+    {
+        for (int z = 8; z >= x; z--)
+        {
+            printf(" ");
+        }
+        for (int y = 0; y <= x; y++)
+        {
+            printf("#");
+        }
+        
+        printf("\n");
+    }
+}
+
+
+// function
+float get_change(void)
+{
+    float n;
+    do
+    {
+        n = get_float("Enter Height Here: \n");
+    }
+    while (n < 0);
+    return n;
+}
