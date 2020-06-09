@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+#include <math.h>
+
+int main(void)
+{
+    // defining variables
+    float unwantedchar = 0;
+    float lettersonly = 0;
+    float wordsonly = 1;
+    float sentencesonly = 0;
+   
+    // getting user input for string
+    
+    string s = get_string("Text: \n");
+
+    // removing and counting any spaces/punctuation
+    
+    for (int i = 0, n = strlen(s) ; i < n; i++)
+        if ((s[i] > 31 && s[i] < 65) || (s[i] > 90 && s[i] < 97) || (s[i] > 122 && s[i] < 127))
+        {
+            unwantedchar++;
+        }
+        else
+        {
+            lettersonly++;
+        }
+
+    //number of letters only print
+    
+    printf("%g letter(s)\n", lettersonly);
+    
+    //number of words with assumption there will be no space at end or start of a sentence
+    
+    for (int i = 0, n = strlen(s) ; i < n; i++)
+        if (s[i] == 32)
+        {
+            wordsonly++;
+        }
+        else
+        {
+        }
+    
+    // print number of words
+    
+    printf("%g word(s)\n", wordsonly);
+    
+    //number of sentences assuming any .!? is denotes a sentence
+    
+    for (int i = 0, n = strlen(s) ; i < n; i++)
+        if (s[i] == 46 || s[i] == 63 || s[i] == 33)
+        {
+            sentencesonly++;
+        }
+        else
+        {
+        }
+    
+    // print number of sentences
+    
+    printf("%g sentence(s)\n", sentencesonly);
+    
+    //calculation of L which is average number of letters per 100 words in text
+    
+    float L = 100 * lettersonly / wordsonly;
+    
+    // calculation of S which is average number of sentences per 100 words in text
+    
+    float S = 100 * sentencesonly / wordsonly;
+    
+    //Calculation and print of Coleman-Liau Index
+    
+    float CLIndex = 0.0588 * L - 0.296 * S - 15.8;
+    CLIndex = round(CLIndex);
+    
+    if (CLIndex < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    else if (CLIndex > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %g\n", CLIndex);
+    
+}
