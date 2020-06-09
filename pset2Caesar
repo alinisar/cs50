@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+#include <math.h>
+#include <ctype.h>
+#include <stdlib.h>
+
+int main(int argc, string argv[])
+{
+    int j = atoi(argv[1]);
+    if (argc != 2 || atoi(argv[1]) < 0)
+    {
+        printf("Usage: ./caesar key\n");
+        return 1;
+    }
+    else
+    {
+        // storing the cypherkey
+        int key = atoi(argv[1]);
+        
+        if (key > 26)
+        {
+            key = key % 26;
+        }
+        
+        // asking user for plaintext
+        
+        string plaintext = get_string("plaintext: ");
+        
+        // creating variables for loop and cyphertext
+        
+        int cyphercode[5000];
+        int n = strlen(plaintext);
+        
+        // print ciphertext box
+        printf("ciphertext: ");
+        
+        // Caesar code loop
+        
+        for (int i = 0; i < n; i++)
+        {
+            
+            // seperate any lowercase alphabets
+            if (plaintext[i] > 96 && plaintext[i] < 123)
+            {
+                cyphercode[i] = plaintext[i];
+                cyphercode[i] = cyphercode[i] + key;
+                
+                if (cyphercode[i] > 122)
+                {
+                    cyphercode[i] = cyphercode[i] - 26;
+                    printf("%c", cyphercode[i]);
+                }
+                else
+                {
+                    printf("%c", cyphercode[i]);
+                }
+            }
+            
+            // seperate any uppercase alphabets    
+            if (plaintext[i] > 64 && plaintext[i] < 90)
+            {
+                cyphercode[i] = plaintext[i];
+                cyphercode[i] = cyphercode[i] + key;
+                
+                if (cyphercode[i] > 90)
+                {
+                    cyphercode[i] = cyphercode[i] - 26;
+                    printf("%c", cyphercode[i]);
+                }
+                else
+                {
+                    printf("%c", cyphercode[i]);
+                }
+            
+            }
+
+            // seperate any other types of characters    
+            if (plaintext[i] < 65 || plaintext[i] > 122)
+            {
+                cyphercode[i] = plaintext[i];
+                printf("%c", cyphercode[i]);
+            }
+        }
+        printf("\n");
+        return 0;
+    }
+    
+}
