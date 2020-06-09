@@ -1,0 +1,71 @@
+// downloading functions
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void)
+{
+    //defining coin count variable
+    int count = 0;
+    int quarter = 0;
+    int dime = 0;
+    int nickel = 0;
+    int penny = 0;
+    
+    // prompting user for change amount
+    float change;
+    do
+    {
+        change = get_float("Enter Change Here: \n");
+    }
+    while (change < 0);
+    
+    printf("change is %f\n", change);
+    
+    //convert to cents
+    
+    int cents = round(change * 100);
+    
+    printf("cents is %i\n", cents);
+    
+    // counting number of quarters required
+    
+    while (cents >= 25)
+    {
+        cents = cents - 25;
+        quarter = quarter + 1;
+        count++;
+    }
+    printf("number of quarters is %i\n", quarter);
+    
+    // counting number of dimes required
+    
+    while (cents >= 10 && cents < 25)
+    {
+        cents = cents - 10;
+        dime = dime + 1;
+        count++;
+    }
+    printf("number of dimes is %i\n", dime);
+    
+    // counting number of nickels required
+    
+    while (cents >= 5 && cents < 10)
+    {
+        cents = cents - 5;
+        nickel = nickel + 1;
+        count++;
+    }
+    printf("number of nickel is %i\n", nickel);
+    
+    // counting number of nickels required
+    
+    while (cents >= 1 && cents < 5)
+    {
+        cents = cents - 1;
+        penny = penny + 1;
+        count++;
+    }
+    printf("number of pennies is %i\n", penny);
+    printf("number of coins is %i\n", count);
+}
